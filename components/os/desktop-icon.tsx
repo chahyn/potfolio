@@ -10,7 +10,7 @@ interface DesktopIconProps {
   isSelected: boolean;
   index: number;
   onClick: () => void;
-  onDoubleClick: () => void;
+  onDoubleClick?: () => void; // made optional
 }
 
 export function DesktopIcon({
@@ -40,7 +40,7 @@ export function DesktopIcon({
       }}
       onDoubleClick={(e) => {
         e.stopPropagation();
-        onDoubleClick();
+        onDoubleClick?.();
       }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
@@ -52,7 +52,6 @@ export function DesktopIcon({
         transition={{ duration: 0.2, ease: "easeOut" }}
         className="relative"
       >
-        {/* Glowing purple border pulse effect */}
         {(isHovered || isSelected) && (
           <motion.div
             className="absolute -inset-1 rounded-2xl"
